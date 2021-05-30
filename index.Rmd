@@ -1,5 +1,5 @@
 ---
-title: "DataViz Blog 01"
+title: "DataViz Blog"
 site: distill::distill_website
 listing: posts
 ---
