@@ -63,7 +63,7 @@ The original visualization is shown below as the reference.
 
 ## 2.2 Aesthetic 
 
-* A contrasting colour palette (blue - export, red - import) is used for the line chart. A grey colour is used for the histogram to display the net export field. Only the light grey colour is used for histogram, this is to avoid confusing the audience with too many colours on the graph.
+* A contrasting colour palette (blue - export, red - import) is used for the line chart. A gray colour is used for the histogram to display the net export field. Only the light gray colour is used for histogram, this is to avoid confusing the audience with too many colours on the graph.
 
 * Add annotations to highlight the huge change in percentage and aid in understanding 
 
@@ -74,7 +74,7 @@ The original visualization is shown below as the reference.
 
 # 3.0 Proposed Visualisation
 
-Please view the visualisation makeover on Tableau Public [here]().
+Please view the visualization makeover on Tableau Public [here](https://public.tableau.com/app/profile/cryshelle.yang.xu/viz/DataViz_Dashboard_publish/Dashboard1).
 
 
 
