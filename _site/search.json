@@ -10,10 +10,10 @@
     },
     {
       "path": "index.html",
-      "title": "DataViz Blog 01",
+      "title": "DataViz Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-05-22T11:00:00+08:00"
+      "last_modified": "2021-05-30T18:03:42+08:00"
     }
   ],
   "collections": ["posts/posts.json"]

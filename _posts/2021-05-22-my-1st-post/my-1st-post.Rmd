@@ -1,6 +1,7 @@
 ---
 title: "Dataviz Makeover 1"
 description: "DataViz Makeover 1 for ISSS608: Visual Analytics"
+preview: img/preview.png
 author:
   - name: Yang Xu
     
@@ -25,7 +26,7 @@ The original visualization is shown below as the reference.
 
 ## 1.1 Clarity 
 
-* The title of the visualization does not convey the core idea of this visualization well to the audience. It does not highlight what the trading countries are for.  
+* The title of the visualization does not convey the core idea of this visualization well to the audience. It does not highlight that the export/import of the countries are in relation to Singapore.
 
 * No proper explanatory notes are shown. First of all, from the original dataset, all data points are in thousand dollars. This important piece of information is not shown anywhere on the visualization. Secondly, no source of data is shown.
 
@@ -43,10 +44,13 @@ The original visualization is shown below as the reference.
 
 * Poor use of colours in the chart to contrast export and import. Area chart is used with shading, which is not helpful in interpreting the relationship. Both colours have a certain level of transparency set. When import and export overlap with each other, it is confusing to look at colour.
 
-* Annotations are not used to highlight message
+* Annotations are not used to highlight message.
 
 
 # 2.0 Alternative Design
+
+To tackle the current design problems, an alternative design is proposed. 
+![](img/proposed design.png)
 
 ## 2.1 Clarity
 
@@ -60,14 +64,16 @@ The original visualization is shown below as the reference.
 
 * The dual axis displays net export (left) and Import/Export (right). x-axis is synchronized across each country displayed.
 
+* Legend is renamed to indicate clearly the import and export from Sinapore' perspective.
+
 
 ## 2.2 Aesthetic 
 
-* A contrasting colour palette (blue - export, red - import) is used for the line chart. A gray colour is used for the histogram to display the net export field. Only the light gray colour is used for histogram, this is to avoid confusing the audience with too many colours on the graph.
+* A contrasting colour palette (blue - export from Singapore, red - import by Singapore) is used for the line chart. A gray colour is used for the histogram to display the net export field. Only the light gray colour is used for histogram, this is to avoid confusing the audience with too many colours on the graph.
 
-* Add annotations to highlight the huge change in percentage and aid in understanding 
+* Add annotations to highlight the huge change in percentage and aid in understanding. 
 
-* To better fit a desktop screen display, have separated into two panels to display the 6 countries
+* To better fit a desktop screen display, have separated into two panels to display the 6 countries.
 
 
 
