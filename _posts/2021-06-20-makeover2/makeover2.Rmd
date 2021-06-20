@@ -6,7 +6,7 @@ preview: img/preview.png
 author:
   - name: Yang Xu
     
-date: 05-30-2021
+date: 06-20-2021
 output:
   distill::distill_article:
     self_contained: false
@@ -42,6 +42,10 @@ To better convey the message to the audience, the visualization should be clear 
 * The visualization itself is confusing as most of the information cannot be directly interpreted from the chart. Viewers need to go through the explanatory notes below the chart to have an understanding of the graph itself.
 
 
+* Title does not convey clearly the main message of the visualization.
+
+* Even the shading is used to show the trade balance, however, it is hard to interpret especially with the perspective not clearly defined. 
+
 ## 1.2 Aesthetics
 
 * The color of the bubble merely identify the countries but does not add values to the visualization.
@@ -54,15 +58,23 @@ To better convey the message to the audience, the visualization should be clear 
 
 
 # 2.0 Alternative Design
+With the below proposed design, the aforementioned points are to be addressed.
+![](img/design.jpg)
 
+* Gradient of colour will be used to display the relative trade position of each partner. 
+
+* Size of the bubble is made smaller to ensure viewers can observe each partner clearly.
+
+* Tooltip is added to show details of the trade relationship and breakdown of months to reveal trend (consistently deficit/surplus or change frequently)
+
+* Histogram to show the exact values of the export/import.
+
+* A word board is shown at the side for viewers to quickly grab the trade positionn at one glance.
 
 
 # 3.0 Proposed Visualisation
 
-Please view the visualization makeover on Tableau Public [here](https://public.tableau.com/app/profile/cryshelle.yang.xu/viz/DataViz_Dashboard_publish/Dashboard1).
-
-
-
+Please view the visualization makeover on Tableau Public [here](https://public.tableau.com/app/profile/cryshelle.yang.xu/viz/DataViz2_16242029410430/Dashboard1).
 
 
 
@@ -85,23 +97,105 @@ Select all date columns and pivot the data into a long format.
 -------------------------------------------------------------------------------------------
 3. Join
 
+Add a join step and join T1 and T2 based on the shownw criteria. Make sure data is correctly matched.
+![](img/join.png)
+
 -------------------------------------------------------------------------------------------
 4. Cleaning
+
+Perform various data cleaning steps. 
+  + Remove repeated columns 
+  + Custom split the Country/Region into purely Country/Region and Unit 
+  
+  ![](img/clean.png)
+  
+  + Rename columns and change to proper role 
+  
+  ![](img/clean2.png)
 -------------------------------------------------------------------------------------------
 5. Output to Tableau Desktop 
+
+Add a output step and choose the location and output type. 
+Drag the output file into Tableau Desktop.
 -------------------------------------------------------------------------------------------
 
-## 4.2 Create Calculated Fields 
+## 4.2 Develop Bubble Chart 
 
 -------------------------------------------------------------------------------------------
-1. 
+1. Create Net Export to calculate the trade balance.
+
+  ![](img/net export.png)
 -------------------------------------------------------------------------------------------
+2. Create measures: Export to Singapore and Import from Singapore to split the trade value to two categories. Drag the two measures to row and column 
+
+![](img/exporttosingapore.png)
+
+![](img/importfromsingapore.png)
+
 -------------------------------------------------------------------------------------------
+3. Drag country/region to the details ; drag trade value to size ; drag net export to colour
+
+![](img/details.png)
+
+![](img/details2.png)
 -------------------------------------------------------------------------------------------
+4. Create measures for tooltip:
+  + Rank Measures to show the relative position of export/import 
+  
+![](img/rank.png)
 -------------------------------------------------------------------------------------------
+5. Create Tooltip graph using the shading area between export and import 
+
+   * Create calculated field Min Value 
+  ![](img/minvalue.png)
+  
+  * Drag the dimensions to the rows and columns and use dual axis to draw the area graph
+  
+    ![](img/tooltip1.png)
+   
+ ![](img/tooltip2.png)
+ 
+ 
+* Edit the colour of the category to change the Min Value to white colour 
+![](img/tooltip3.png)
+  
+  * Insert Trade Value as a trend line by dragging the trade value to the graph, use dual axis
+  and use colour to differentiate export and import 
+  
+  ![](img/tooltip4.png)
+
 -------------------------------------------------------------------------------------------
+6. Create Tooltip page 
+
+Use all the measures built above to realize the tooltip page which will display the breakdown of month trade balance 
+
+![](img/tooltip5.png)
 -------------------------------------------------------------------------------------------
+7.Trade Position 
+
+Create a neW worksheet to display trade position 
+Drag country/region to rows and add net export to colour 
+
 -------------------------------------------------------------------------------------------
+
+8. Motion and Sync Filters across different pages 
+
+Enable animations from Format -> Animations. 
+Sync country/region and month-year filters across different pages
+
+![](img/synv.png)
 -------------------------------------------------------------------------------------------
+9. Dashboard
+
+Combine different pages to the same dashboard. 
+Use the motion control on the top, the dashboard will show the changes of various perspectives.
 -------------------------------------------------------------------------------------------
+
 # 5.0 Derived Insights
+
+
+1. By using the animation, we can observe the trend of Singapore's major trade partners during 2020-2020. During the past 20 years, we can see the total trade value increases year by year. 
+
+2. In the early 2020s, Singapore has huge annual trade deficit with Japan. The trade deficit decreases over the year, and almost reached to a trade breakeven in 2020. This suggests Singapore's trade advantage with Japan has improved. 
+
+3. Singapore has always has trade surplus with Hong kong. Hong Kong has ranked as top during the past 20 years with value of imported goods from Singapore, however, Singapore imported less from Hong Kong among the major trade partners.
