@@ -1,17 +1,3 @@
----
-title: "Visual Detective Assignment"
-description: "VAST Mini Challenge 2 2021"
-
-author:
-  - name: Yang Xu
-    url: {}
-date: 07-17-2021
-output:
-  distill::distill_article:
-    self_contained: false
-    toc: true
----
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -31,6 +17,10 @@ Inspired by the 2014 VAST Challenge, I have learned many techniques from the pre
 
 
 Most of the submissions also use map trajectories to detect the users of the credit card by matching traveling patterns and staying locations.
+
+However, it is often the case that the visuals are not interactive hence the readers might be affected by the resolution of the image and size of the fonts. 
+
+Therefore, this write-up will help to provide more interactive plots to enable the ease of interactivity in visual analytics.
 
 
 # 2 Data Description and Preparation
@@ -61,7 +51,7 @@ cc <- read_csv('MC2\\cc_data.csv')
 loyalty <- read_csv('MC2\\loyalty_data.csv')
 locationmapping <- read_csv('MC2\\LocationMapping.csv')
 ap <- raster("C:\\Study\\MITB Term 3\\ISSS608 Visual Analytics\\Lesson08\\In-class_Ex08\\Geospatial\\MC2-tourist.tif")
-gps <-gps <- read_csv('MC2\\gps.csv')
+gps <- read_csv('MC2\\gps.csv')
 
 ```
 
@@ -114,7 +104,7 @@ df1$period <- cut(as.numeric(df1$hour),
                              "afternoon",
                              "dinner",
                              "nignt"))
-df1$category <-
+
 #df1$location <- stri_trans_general(df1$location, "latin-ascii")
 
 df1$last4ccnum <- as_factor(df1$last4ccnum)
@@ -231,10 +221,12 @@ p1 <-
                   fill = "lightblue") + 
     ggtitle("Brew've Been Served")
   
-  #(p1 + p2)/(p3+p4)
+  (p1 + p2)/(p3+p4)
 ```
 
-transaction boxplot  by location 
+transaction boxplot by location 
+
+Some outliers are revealed by the 
 
 ```{r}
 ggplotly(
@@ -435,29 +427,7 @@ For example, we could locate the Hippokampos through the card details and locati
 
 
 
-# Question 4 
 
-1. around 3am some employees were traveling on same routes near the supposed executives houses (Ada Campo-Corrente, Orhan Strum, Willem Vasco-Pais and Ingrid Barranco) including: Loreto Bodrogi (car15), Isia Vann (car16), Hennie Osvaldo (car21) and Minke Mies (car24) on 7th, 9th and 14th.
-
-These security personnels do not have much interactions other than the midnight events. Perhaps they were monitoring the executives' night movements.
-
-```{r}
-#3am 
-gps_path_selected <- gps_sf %>%
-  st_as_sf() %>%
-  filter(period == c("midnight")) 
-
-tmap_mode("view")
-tm_shape(ap) +
-  tm_rgb(ap, r = 1, g = 2, b = 3,
-         alpha = NA,
-         saturation = 1,
-         interpolate = TRUE,
-         max.value = 255) + 
-  tm_shape(gps_path_selected) +
-  tm_dots(col = 'id', size = 0.05)
-
-```
 
 2. Playing Golf 
 executive meeting at golf on 12th by car id 4, 10, 35 - Ingrid Barranco, Ada Campo-Corrente, Willem Vasco-Pais.
@@ -481,26 +451,24 @@ tm_shape(ap) +
 ```
 
 
-3. CEO Welcome Party 
-
-car ID 31 -Sten Sanjorge, the CEO only joined them on 19th. 
-
-Everyone spent over 100 dollars on 19th. 
-```{r}
-golf <- df1[c("timestamp", "FirstName", "LastName", "location", "price")] %>%
-  filter(location == "Desafio Golf Course")
-  
-mutate(golf, timestamp = format(timestamp,"%d/%m/%Y, %H:%M:%S")) %>%
-         datatable(rownames=TRUE, filter="top", class = 'cell-border stripe')
-
-
-```
 
 # Question 4 
 
 1. around 3am some employees were traveling on same routes near the supposed executives houses (Ada Campo-Corrente, Orhan Strum, Willem Vasco-Pais and Ingrid Barranco) including: Loreto Bodrogi (car15), Isia Vann (car16), Hennie Osvaldo (car21) and Minke Mies (car24) on 7th, 9th and 14th.
 
 These security personnels do not have much interactions other than the midnight events. Perhaps they were monitoring the executives' night movements.
+
+
+```{r}
+car_cc <- read_excel('MC2\\car_cc.xlsx')
+car_assign <- read_csv('MC2\\car-assignments.csv')
+car_assign <- left_join(car_assign, car_cc, 
+                        by = c('CarID' = 'id'))
+car_assign$cc <- as_factor(car_assign$cc)
+df1 <- left_join(df1, car_assign,
+                 by = c("last4ccnum" = "cc"))
+
+```
 
 ```{r}
 #3am 
@@ -560,13 +528,7 @@ mutate(golf, timestamp = format(timestamp,"%d/%m/%Y, %H:%M:%S")) %>%
 Thereofore, by use of this logic, most of the credit card and car ID can be mapped with each other. Tapping on to the time lag identified in question 2 and using consistent evidence. The mapping is shown below.
 
 ```{r}
-car_cc <- read_excel('MC2\\car_cc.xlsx')
-car_assign <- read_csv('MC2\\car-assignments.csv')
-car_assign <- left_join(car_assign, car_cc, 
-                        by = c('CarID' = 'id'))
-car_assign$cc <- as_factor(car_assign$cc)
-df1 <- left_join(df1, car_assign,
-                 by = c("last4ccnum" = "cc"))
+
 
 car_assign %>%
          datatable(rownames=TRUE, filter="top", class = 'cell-border stripe')
