@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-07-17-assignment/",
+    "title": "Visual Detective Assignment",
+    "description": "VAST Mini Challenge 2 2021",
+    "author": [
+      {
+        "name": "Yang Xu",
+        "url": {}
+      }
+    ],
+    "date": "2021-07-17",
+    "categories": [],
+    "contents": "\r\n1 Overview\r\n1.1 Background of the case\r\n1.2 Literature Review / Motivation\r\n2 Data Description and Preparation\r\nFirst of all, we need to load the necessary packages to the environment.\r\n\r\n\r\n#clear objects\r\nrm(list = ls())\r\n#load packages \r\npackages = c( 'clock','raster', 'sf', 'tmap', 'tidyverse', 'stringi', 'plotly')\r\n\r\nfor (p in packages){\r\n  if(!require(p, character.only = T)){\r\n    install.packages(p)\r\n  }\r\n  \r\n  library(p, character.only = T)\r\n}\r\n\r\n\r\n\r\nThe datasets are loaded using read_csv. The locationMapping.csv\r\n\r\n\r\n# read data in \r\ncc <- read_csv('MC2\\\\cc_data.csv')\r\nloyalty <- read_csv('MC2\\\\loyalty_data.csv')\r\nlocationmapping <- read_csv('MC2\\\\LocationMapping.csv')\r\nglimpse(locationmapping)\r\n\r\n\r\nRows: 34\r\nColumns: 2\r\n$ Location <chr> \"Abila Airport\", \"Abila Scrapyard\", \"Abila Zacha...\r\n$ Category <chr> \"Work\", \"Work\", \"F&B\", \"Life\", \"Life\", \"F&B\", \"F...\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-07-25T10:33:36+08:00",
+    "input_file": "assignment.knit.md"
+  },
+  {
     "path": "posts/2021-06-20-makeover2/",
     "title": "Dataviz Makeover 2",
     "description": "\"DataViz Makeover 1 for ISSS608: Visual Analytics\"",
