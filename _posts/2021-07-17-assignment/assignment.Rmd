@@ -97,7 +97,7 @@ for (p in packages){
 cc <- read_csv('MC2\\cc_data.csv')
 loyalty <- read_csv('MC2\\loyalty_data.csv')
 locationmapping <- read_csv('MC2\\LocationMapping.csv')
-ap <- raster("C:\\Study\\MITB Term 3\\ISSS608 Visual Analytics\\Lesson08\\In-class_Ex08\\Geospatial\\MC2-tourist.tif")
+ap <- raster("C:MC2\\MC2-tourist.tif")
 gps <-gps <- read_csv('MC2\\gps.csv')
 
 ```
