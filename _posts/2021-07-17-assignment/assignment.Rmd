@@ -1,0 +1,57 @@
+---
+title: "Visual Detective Assignment"
+description: "VAST Mini Challenge 2 2021"
+
+author:
+  - name: Yang Xu
+    url: {}
+date: 07-17-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+# 1 Overview 
+
+## 1.1 Background of the case
+
+
+## 1.2 Literature Review / Motivation
+
+
+# 2 Data Description and Preparation
+
+First of all, we need to load the necessary packages to the environment.
+
+
+```{r, echo = TRUE}
+#clear objects
+rm(list = ls())
+#load packages 
+packages = c( 'clock','raster', 'sf', 'tmap', 'tidyverse', 'stringi', 'plotly')
+
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  
+  library(p, character.only = T)
+}
+```
+
+The datasets are loaded using read_csv.
+The locationMapping.csv 
+
+
+```{r, echo = TRUE}
+# read data in 
+cc <- read_csv('MC2\\cc_data.csv')
+loyalty <- read_csv('MC2\\loyalty_data.csv')
+locationmapping <- read_csv('MC2\\LocationMapping.csv')
+glimpse(locationmapping)
+
+```
